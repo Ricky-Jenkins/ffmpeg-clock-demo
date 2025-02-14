@@ -514,14 +514,13 @@ int ff_rtsp_parse_streaming_commands(AVFormatContext *s)
 
 static int rtsp_read_play(AVFormatContext *s)
 {
+    AVDictionary *opts = s->metadata;
     av_log(s, AV_LOG_DEBUG, "READING_OPTIONS: \n");
     while ((entry = av_dict_get(dict, "", entry, AV_DICT_IGNORE_SUFFIX))) {
         av_log(NULL, AV_LOG_DEBUG, "Key: %s, Value: %s\n", entry->key, entry->value);
     }
-    AVDictionary *opts = s->metadata;
     AVDictionaryEntry *t = NULL;
     if ((t = av_dict_get(opts, "range_clock", NULL, 0))) {
-        // Use t->value to access the option
         av_log(s, AV_LOG_DEBUG, "Option from metadata: %s\n", t->value);
     }
 
