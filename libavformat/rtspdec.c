@@ -514,6 +514,13 @@ int ff_rtsp_parse_streaming_commands(AVFormatContext *s)
 
 static int rtsp_read_play(AVFormatContext *s)
 {
+    AVDictionary *opts = s->metadata;
+    AVDictionaryEntry *t = NULL;
+    if ((t = av_dict_get(opts, "your_option_name", NULL, 0))) {
+        // Use t->value to access the option
+        av_log(s, AV_LOG_DEBUG, "Option from metadata: %s\n", t->value);
+    }
+
     RTSPState *rt = s->priv_data;
     RTSPMessageHeader reply1, *reply = &reply1;
     int i;
