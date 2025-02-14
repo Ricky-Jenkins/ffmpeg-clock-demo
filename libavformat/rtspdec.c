@@ -516,7 +516,7 @@ static int rtsp_read_play(AVFormatContext *s)
 {
     AVDictionary *opts = s->metadata;
     av_log(s, AV_LOG_DEBUG, "READING_OPTIONS: \n");
-    while ((entry = av_dict_get(dict, "", entry, AV_DICT_IGNORE_SUFFIX))) {
+    while ((entry = av_dict_get(opts, "", entry, AV_DICT_IGNORE_SUFFIX))) {
         av_log(NULL, AV_LOG_DEBUG, "Key: %s, Value: %s\n", entry->key, entry->value);
     }
     AVDictionaryEntry *t = NULL;
